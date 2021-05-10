@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import Footer from "../../components/footer/Footer";
 
+import { Dashboard } from "../../components/dashboard";
+import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header/HeaderNav";
-import Sidebar from "../../components/sidebar/Sidebar";
+import { SuperAdminSidebar } from "../../components/sidebar";
 
 class DashboardLayout extends Component {
   render() {
@@ -13,9 +14,11 @@ class DashboardLayout extends Component {
           <Header />
           <HeaderNav />
         </div>
-        <Sidebar />
+        <SuperAdminSidebar />
         <div className="main-panel">
-          <div className="content"></div>
+          <div className="content">
+            <Dashboard />
+          </div>
           <Footer />
         </div>
       </div>

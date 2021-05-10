@@ -8,7 +8,7 @@ import {
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Sidebar() {
+function SuperAdminSidebar() {
   return (
     <div className="sidebar sidebar-style-2">
       <div className="sidebar-wrapper scrollbar scrollbar-inner">
@@ -58,28 +58,14 @@ function Sidebar() {
           </div>
           <ul className="nav nav-primary">
             <li className="nav-item active">
-              <a
-                data-toggle="collapse"
-                href="#dashboard"
-                className="collapsed"
-                aria-expanded="false"
-              >
+              <a href="!#">
                 <i>
                   <FontAwesomeIcon icon={faHome} />
                 </i>
                 <p>Dashboard</p>
-                <span className="caret"></span>
               </a>
-              <div className="collapse" id="dashboard">
-                <ul className="nav nav-collapse">
-                  <li>
-                    <a href="!#">
-                      <span className="sub-item">Dashboard 1</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </li>
+
             <li className="nav-section">
               <span className="sidebar-mini-icon">
                 <i className="fa fa-ellipsis-h"></i>
@@ -125,4 +111,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default SuperAdminSidebar;

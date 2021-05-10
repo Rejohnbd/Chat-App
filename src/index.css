@@ -47,17 +47,17 @@ a:focus {
 
 h1,
 .h1 {
-  font-size: 1.725rem;
+  font-size: 1.725rem !important;
 }
 
 h2,
 .h2 {
-  font-size: 1.35rem;
+  font-size: 1.35rem !important;
 }
 
 h3,
 .h3 {
-  font-size: 1.1625rem;
+  font-size: 1.1625rem !important;
 }
 
 h4,
@@ -67,12 +67,12 @@ h4,
 
 h5,
 .h5 {
-  font-size: 0.9125rem;
+  font-size: 0.9125rem !important;
 }
 
 h6,
 .h6 {
-  font-size: 0.825rem;
+  font-size: 0.825rem !important;
 }
 
 p {
