@@ -1,14 +1,20 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import ProfilePic from "../../assets/images/profile.jpg";
 import {
   faChartBar,
   faDesktop,
   faHome,
+  faHospitalAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
+import ProfilePic from "../../assets/images/profile.jpg";
+
 function SuperAdminSidebar() {
+  const location = useLocation();
+  const { pathname } = location;
+  const splitLocation = pathname.split("/");
+
   return (
     <div className="sidebar sidebar-style-2">
       <div className="sidebar-wrapper scrollbar scrollbar-inner">
@@ -57,40 +63,51 @@ function SuperAdminSidebar() {
             </div>
           </div>
           <ul className="nav nav-primary">
-            <li className="nav-item active">
-              <a href="!#">
+            <li
+              className={
+                splitLocation[1] === "" ? "nav-item active" : "nav-item"
+              }
+            >
+              <Link to="/">
                 <i>
                   <FontAwesomeIcon icon={faHome} />
                 </i>
                 <p>Dashboard</p>
-              </a>
+              </Link>
             </li>
-
             <li className="nav-section">
               <span className="sidebar-mini-icon">
                 <i className="fa fa-ellipsis-h"></i>
               </span>
               <h4 className="text-section">Components</h4>
             </li>
-            <li className="nav-item">
-              <a data-toggle="collapse" href="#charts">
+            <li
+              className={
+                splitLocation[1] === "pharmacy-list"
+                  ? "nav-item active"
+                  : splitLocation[1] === "pharmacy-add"
+                  ? "nav-item active"
+                  : "nav-item"
+              }
+            >
+              <a data-toggle="collapse" href="#pharmacy">
                 <i>
-                  <FontAwesomeIcon icon={faChartBar} />
+                  <FontAwesomeIcon icon={faHospitalAlt} />
                 </i>
-                <p>Charts</p>
+                <p>Pharmacy</p>
                 <span className="caret"></span>
               </a>
-              <div className="collapse" id="charts">
+              <div className="collapse" id="pharmacy">
                 <ul className="nav nav-collapse">
                   <li>
-                    <a href="charts/charts.html">
-                      <span className="sub-item">Chart Js</span>
-                    </a>
+                    <Link to="/pharmacy-list">
+                      <span className="sub-item">Pharmacy List</span>
+                    </Link>
                   </li>
                   <li>
-                    <a href="charts/sparkline.html">
-                      <span className="sub-item">Sparkline</span>
-                    </a>
+                    <Link to="/pharmacy-add">
+                      <span className="sub-item">Pharmacy Add</span>
+                    </Link>
                   </li>
                 </ul>
               </div>

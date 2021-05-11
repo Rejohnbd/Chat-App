@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
@@ -7,9 +8,9 @@ import Logo from "../../assets/images/logo.svg";
 function Header() {
   return (
     <div className="logo-header" data-background-color="blue">
-      <a href="!#" className="logo">
+      <Link to="/" className="logo">
         <img src={Logo} alt="navbar brand" className="navbar-brand" />
-      </a>
+      </Link>
       <button
         className="navbar-toggler sidenav-toggler ml-auto"
         type="button"
