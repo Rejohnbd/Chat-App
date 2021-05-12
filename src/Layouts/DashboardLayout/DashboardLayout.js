@@ -9,12 +9,27 @@ import { PharmacyAdd, PharmacyList } from "../../components/phamacy";
 import { SuperAdminSidebar } from "../../components/sidebar";
 
 class DashboardLayout extends Component {
+  state = {
+    isToogled: false,
+    mytest: "",
+  };
+
+  sidebarToogleHandler = () => {
+    const currentState = this.state.isToogled;
+    this.setState({ isToogled: !currentState });
+  };
+
   render() {
+    const { isToogled } = this.state;
+
     return (
       <Router>
-        <div className="wrapper">
+        <div className={isToogled ? "wrapper sidebar_minimize" : "wrapper"}>
           <div className="main-header">
-            <Header />
+            <Header
+              sidebarToogle={this.sidebarToogleHandler}
+              toogleState={isToogled}
+            />
             <HeaderNav />
           </div>
           <SuperAdminSidebar />

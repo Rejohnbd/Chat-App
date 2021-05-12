@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 
 import Logo from "../../assets/images/logo.svg";
 
-function Header() {
+function Header(props) {
   return (
     <div className="logo-header" data-background-color="blue">
       <Link to="/" className="logo">
@@ -26,9 +26,13 @@ function Header() {
       <button className="topbar-toggler more">
         <i className="icon-options-vertical"></i>
       </button>
-      <div className="nav-toggle">
+      <div className="nav-toggle" onClick={props.sidebarToogle}>
         <button className="btn btn-toggle toggle-sidebar">
-          <FontAwesomeIcon icon={faBars} />
+          {props.toogleState ? (
+            <FontAwesomeIcon icon={faEllipsisV} />
+          ) : (
+            <FontAwesomeIcon icon={faBars} />
+          )}
         </button>
       </div>
     </div>
