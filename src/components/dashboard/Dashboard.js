@@ -1,11 +1,12 @@
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAddressBook,
   faDatabase,
   faUserCheck,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { Fragment } from "react";
 
 function Dashboard() {
   return (
@@ -23,9 +24,9 @@ function Dashboard() {
               <a href="!#" className="btn btn-white btn-border btn-round mr-2">
                 Manage
               </a>
-              <a href="!#" className="btn btn-secondary btn-round">
+              <Link to="/pharmacy-add" className="btn btn-secondary btn-round">
                 Add Pharmacy
-              </a>
+              </Link>
             </div>
           </div>
         </div>

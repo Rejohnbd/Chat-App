@@ -35,20 +35,27 @@ class PharmacyAdd extends Component {
 
     if (pharmacyName === "") {
       this.setState({ errors: { pharmacyName: "Pharmacy Name is Required." } });
+      return;
     }
 
     if (email === "") {
       this.setState({ errors: { email: "Email Address is Required." } });
+      return;
     } else if (
-      !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-        this.state.email
-      )
+      !/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.email)
     ) {
       this.setState({ errors: { email: "Valid Email Address is Required." } });
+      return;
     }
 
     if (password === "") {
       this.setState({ errors: { password: "Default Password is Required." } });
+      return;
+    } else if (password.length < 6) {
+      this.setState({
+        errors: { password: "Default Password at least 6 digits" },
+      });
+      return;
     }
 
     const newPhamacy = {
