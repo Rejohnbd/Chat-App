@@ -7,6 +7,7 @@ import Header from "../../components/header/Header";
 import HeaderNav from "../../components/header/HeaderNav";
 import { PharmacyAdd, PharmacyList } from "../../components/phamacy";
 import { SuperAdminSidebar } from "../../components/sidebar";
+import NotFound from "../../components/404/NotFound";
 
 class DashboardLayout extends Component {
   state = {
@@ -39,6 +40,7 @@ class DashboardLayout extends Component {
                 <Route exact path="/" component={Dashboard} />
                 <Route exact path="/pharmacy-list" component={PharmacyList} />
                 <Route exact path="/pharmacy-add" component={PharmacyAdd} />
+                <Route component={NotFound} />
               </Switch>
             </div>
             <Footer />
