@@ -59,24 +59,24 @@ class PharmacyAdd extends Component {
       return;
     }
 
+    const newPhamacy = {
+      pharmacyName: this.state.pharmacyName,
+      phamacySlug: this.createSlug(this.state.pharmacyName),
+      type: "admin",
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    console.log(newPhamacy);
+
     axios
-      .get("/pharmacy")
+      .post("/pharmacy", newPhamacy)
       .then((response) => {
         console.log(response);
       })
       .catch((err) => {
         console.log(err);
       });
-
-    // const newPhamacy = {
-    //   pharmacyName: this.state.pharmacyName,
-    //   phamacySlug: this.createSlug(this.state.pharmacyName),
-    //   type: "admin",
-    //   email: this.state.email,
-    //   password: this.state.password,
-    // };
-
-    // console.log(newPhamacy);
   };
 
   render() {
