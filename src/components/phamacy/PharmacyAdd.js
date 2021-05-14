@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "../../axios";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faHome } from "@fortawesome/free-solid-svg-icons";
@@ -58,15 +59,24 @@ class PharmacyAdd extends Component {
       return;
     }
 
-    const newPhamacy = {
-      pharmacyName: this.state.pharmacyName,
-      phamacySlug: this.createSlug(this.state.pharmacyName),
-      type: "admin",
-      email: this.state.email,
-      password: this.state.password,
-    };
+    axios
+      .get("/pharmacy")
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    console.log(newPhamacy);
+    // const newPhamacy = {
+    //   pharmacyName: this.state.pharmacyName,
+    //   phamacySlug: this.createSlug(this.state.pharmacyName),
+    //   type: "admin",
+    //   email: this.state.email,
+    //   password: this.state.password,
+    // };
+
+    // console.log(newPhamacy);
   };
 
   render() {
