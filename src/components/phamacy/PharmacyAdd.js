@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import axios from "../../axios";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight, faHome } from "@fortawesome/free-solid-svg-icons";
+import React, { Component } from "react"
+import axios from "../../axios"
+import { Link } from "react-router-dom"
+import Swal from "sweetalert2"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faAngleRight, faHome } from "@fortawesome/free-solid-svg-icons"
 
-import FormInputGroup from "../formItems/FormInputGroup";
+import FormInputGroup from "../formItems/FormInputGroup"
 
 class PharmacyAdd extends Component {
   state = {
@@ -12,72 +13,90 @@ class PharmacyAdd extends Component {
     email: "",
     password: "",
     errors: {},
-  };
+  }
 
   createSlug = (text) => {
     return text
       .toLowerCase()
       .replace(/ /g, "-")
-      .replace(/[^\w-]+/g, "");
-  };
+      .replace(/[^\w-]+/g, "")
+  }
 
   onChangeHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     this.setState({
       [e.target.name]: e.target.value,
       errors: {},
-    });
-  };
+    })
+  }
 
   onSubmitForm = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const { pharmacyName, email, password } = this.state;
+    const { pharmacyName, email, password } = this.state
 
     if (pharmacyName === "") {
-      this.setState({ errors: { pharmacyName: "Pharmacy Name is Required." } });
-      return;
+      this.setState({ errors: { pharmacyName: "Pharmacy Name is Required." } })
+      return
     }
 
     if (email === "") {
-      this.setState({ errors: { email: "Email Address is Required." } });
-      return;
+      this.setState({ errors: { email: "Email Address is Required." } })
+      return
     } else if (
       !/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.email)
     ) {
-      this.setState({ errors: { email: "Valid Email Address is Required." } });
-      return;
+      this.setState({ errors: { email: "Valid Email Address is Required." } })
+      return
     }
 
     if (password === "") {
-      this.setState({ errors: { password: "Default Password is Required." } });
-      return;
+      this.setState({ errors: { password: "Default Password is Required." } })
+      return
     } else if (password.length < 6) {
       this.setState({
         errors: { password: "Default Password at least 6 digits" },
-      });
-      return;
+      })
+      return
     }
 
     const newPhamacy = {
       pharmacyName: this.state.pharmacyName,
-      phamacySlug: this.createSlug(this.state.pharmacyName),
-      type: "admin",
+      pharmacySlug: this.createSlug(this.state.pharmacyName),
+      userType: "admin",
       email: this.state.email,
       password: this.state.password,
-    };
-
-    console.log(newPhamacy);
+    }
 
     axios
       .post("/pharmacy", newPhamacy)
       .then((response) => {
-        console.log(response);
+        if (response.status === 201) {
+          Swal.fire({
+            icon: "success",
+            title: response.data.message,
+            showConfirmButton: false,
+            timer: 1500,
+          })
+        }
+        this.setState({
+          pharmacyName: "",
+          email: "",
+          password: "",
+          errors: {},
+        })
       })
       .catch((err) => {
-        console.log(err);
-      });
-  };
+        if (err.response.status === 409) {
+          Swal.fire(
+            err.response.statusText,
+            err.response.data.message,
+            "warning"
+          )
+        }
+        console.log(err.response)
+      })
+  }
 
   render() {
     return (
@@ -158,8 +177,8 @@ class PharmacyAdd extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default PharmacyAdd;
+export default PharmacyAdd
