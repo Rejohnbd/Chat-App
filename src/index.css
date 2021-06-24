@@ -14263,14 +14263,14 @@ body[data-background-color="dark"] .board {
 }
 
 .login {
-  background: #efefee;
+  background: #fff;
 }
 .login .wrapper.wrapper-login {
   display: flex;
   justify-content: center;
   align-items: center;
   height: unset;
-  padding: 15px;
+  /* padding: 15px; */
 }
 .login .wrapper.wrapper-login .container-login,
 .login .wrapper.wrapper-login .container-signup {

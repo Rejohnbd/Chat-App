@@ -37,7 +37,7 @@ class DashboardLayout extends Component {
           <div className="main-panel">
             <div className="content">
               <Switch>
-                <Route exact path="/" component={Dashboard} />
+                <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/pharmacy-list" component={PharmacyList} />
                 <Route exact path="/pharmacy-add" component={PharmacyAdd} />
                 <Route component={NotFound} />
